@@ -1,0 +1,22 @@
+<form name="myForm" class="offset4 span3">
+  <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+    <label>Name</label>
+    <input type="text" name="name" ng-model="project.name" required>
+    <span class="help-inline" ng-show="myForm.name.$error.required">Required</span>
+  </div>
+ 
+  <div class="control-group" ng-class="{error: myForm.site.$invalid}">
+    <label>Website</label>
+    <input type="url" name="site" ng-model="project.site" required>
+    <span class="help-inline" ng-show="myForm.site.$error.required">Required</span>
+    <span class="help-inline" ng-show="myForm.site.$error.url">Not a URL</span>
+  </div>
+ 
+  <label>Description</label>
+  <textarea name="description" ng-model="project.description"></textarea>
+ 
+  <br>
+  <a href="#/" class="btn">Cancel</a>
+  <button class="btn btn-primary" ng-click="save()" ng-disabled="myForm.$invalid">Save</button>
+  <button class="btn btn-danger" ng-show="project.id">Delete</button>
+</form>

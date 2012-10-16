@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>crud</title>
+    <meta charset='utf-8'></meta>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container well"><center><h1>Projects</h1></center></div>
+    <div ng-app="crud" class="container">
+      <center>
+        <ng-view></ng-view>
+      </center>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.min.js"></script>
+    <script src="/app/scripts/app.js"></script>
+    <script src="app/scripts/services/projects.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/app/scripts/controllers/index.js"></script>
+    <script src="/app/scripts/controllers/newProject.js"></script>
+    <script src="/app/scripts/controllers/editProject.js"></script>
+
+  </body>
+</html>
