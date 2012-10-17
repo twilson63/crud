@@ -14,7 +14,7 @@ DB.create_table :projects do
   String :name
   String :description
   String :site
-end unless DB[:projects]
+end unless DB.table_exists?(:projects)
 
 use Rack::PostBodyToParams
 
