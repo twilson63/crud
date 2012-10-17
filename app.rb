@@ -46,9 +46,12 @@ get '/projects/:id' do |id|
 end
 
 put '/projects/:id' do |id|
-  puts params.inspect
-  data = DB[:projects].where(id: id.to_i).first
-  data.update(name: params[:name], description: params[:description], site: params[:site])
-  '{}'
+  DB[:projects].where(id: id).update(name: params[:name], description: params[:description], site: params[:site])
+  DB[:projects].where(id: id).first.to_json
+end
+
+delete '/projects/:id' do |id|
+  DB[:projects].where(id: id).delete
+  '{"status": "success"}'
 end
 
