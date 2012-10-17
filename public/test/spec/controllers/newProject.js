@@ -2,15 +2,16 @@
 
 describe('Controller: NewProject', function() {
   beforeEach(module('app'));
-  
+
   var ctrl, scope, location, $httpBackend;
-  
-  beforeEach(inject(function(_$httpBackend_, $location, $controller, $injector, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectPOST('/projects').respond({id: 1, name: 'AngularJS'});
+
+  beforeEach(inject(function($location, $controller, $injector, $rootScope) {
     scope = $rootScope.$new();
     location = $location;
     Project = $injector.get('Project');
+    spyOn(Project, 'save').andCallFake(function(project, cb){
+      cb({id: 1, name: 'AngularJS'});
+    });
     ctrl = $controller('NewProject', { $scope: scope, $location: location, Project: Project });
   }));
 
@@ -23,14 +24,8 @@ describe('Controller: NewProject', function() {
     spyOn(location, 'path');
     // save
     scope.save();
-    $httpBackend.flush();
     // confirm location path was called.
     expect(location.path).toHaveBeenCalled();
   });
 
-  // Clear any http calls
-  afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
-  });
 });

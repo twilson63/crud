@@ -2,27 +2,38 @@
 
 describe('Controller: EditProject', function() {
   beforeEach(module('app'));
-  
-  var ctrl, scope, location, $httpBackend;
-  
-  beforeEach(inject(function(_$httpBackend_, $location, $routeParams, $controller, $injector, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $routeParams.id = 1;
-    $httpBackend.expectGET('/projects/1').respond({id: 1, name: 'AngularJS'});
+
+  var ctrl, scope, location;
+
+  beforeEach(inject(function($location, $controller, $injector, $rootScope) {
     scope = $rootScope.$new();
     location = $location;
     Project = $injector.get('Project');
-    ctrl = $controller('EditProject', { $scope: scope, $location: location, $routeParams: $routeParams, Project: Project });
+    spyOn(Project, 'get').andCallFake(function(id, cb){
+      cb({id: 1, name: 'AngularJS'});
+    });
+    ctrl = $controller('EditProject', { $scope: scope, $location: location, Project: Project });
   }));
 
-  it('should get project', function() {
-    $httpBackend.flush();
-    //scope.project.toBeDefined();
+  it('should get recent Project', function(){
+    expect(scope.project.name).toEqual('AngularJS')
   });
 
-  // Clear any http calls
-  afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
+  it('isClean should return true', function() {
+    expect(scope.isClean()).toEqual(true);
+  });
+
+  it('isClean should return false', function() {
+    scope.project.name = 'Rails';
+    expect(scope.isClean()).toEqual(false);
+  });
+
+  it('should save project', function() {
+    spyOn(scope.project, 'update').andCallFake(function(cb){
+      cb({id: 1, name: 'AngularJS'});
+    });
+    spyOn(location, 'path');
+    scope.save();
+    expect(location.path).toHaveBeenCalled();
   });
 });
