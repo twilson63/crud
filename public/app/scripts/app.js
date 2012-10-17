@@ -1,4 +1,4 @@
-var app = angular.module('crud', ['ngResource'])
+var app = angular.module('app', ['ngResource'])
   .config(function($routeProvider){
     $routeProvider
       .when('/', { controller: 'Index', templateUrl: '/app/views/index.html' })
