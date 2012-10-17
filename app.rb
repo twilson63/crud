@@ -5,7 +5,8 @@ require 'active_support'
 
 ActiveSupport::JSON.backend = 'Yajl'
 
-DB = Sequel.sqlite("sqlite://projects.db")
+# Sqlite Memory Database
+DB = Sequel.sqlite('projects.db')
 
 # create an items table
 DB.create_table :projects do
