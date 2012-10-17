@@ -14,7 +14,7 @@ DB.create_table :projects do
   String :name
   String :description
   String :site
-end
+end unless DB[:projects]
 
 use Rack::PostBodyToParams
 
