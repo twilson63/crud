@@ -7,6 +7,6 @@ gem 'activesupport'
 gem 'yajl-ruby'
 
 gem 'thin'
-gem 'sinatra'
+gem 'sinatra', '1.3.3'
 gem 'rack-post-body-to-params'
 
