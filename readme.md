@@ -23,3 +23,14 @@ bundle install
 ``` sh
 ruby app.rb
 ```
+
+4. Run Test (requires phantomjs - see http://phantomjs.org/)
+
+``` sh
+npm install testacular -g
+cd public
+testacular start
+#open new window
+cd public
+testacular run
+```
